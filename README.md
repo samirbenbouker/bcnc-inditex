@@ -1,7 +1,5 @@
 # BCNC Project for Inditex
 
-# BCNC Project for Inditex using Spring Boot and H2 Database
-
 This README.md provides detailed information about the BCNC project developed for the Inditex company. The project utilizes Spring Boot as a development framework, H2 as a database, and follows a Test-Driven Development (TDD) architecture.
 
 ## Project Description

@@ -26,6 +26,10 @@ public class PriceServiceImplTest {
 
     @Mock
     private PricesRepository pricesRepository;
+    @Mock
+    private BrandService brandService;
+    @Mock
+    private ProductService productService;
     @InjectMocks
     private PricesServiceImpl pricesService;
 

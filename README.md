@@ -7,10 +7,15 @@ This README.md provides detailed information about the BCNC project developed fo
 BCNC is a project designed for Inditex, focusing on inventory management and stock control in the chain's stores. The application allows for operations related to product management, inventory tracking, and report generation to facilitate decision-making.
 
 ## Technologies Used
-
 - **Spring Boot:** Java application development framework that simplifies the creation of Spring-based applications with minimal configuration.
 - **H2 Database:** In-memory database providing efficient storage for development and testing purposes.
 - **TDD (Test-Driven Development):** Development methodology that emphasizes writing tests before writing production code, ensuring software quality and integrity.
+
+## Why used that technologies
+* In this project I have used the TDD architecture since there were some main tests, and I decided that it was better to set up the structure of the tests and then set up the entire project service and that is why we have also used an in-memory database.
+* We have used lombok to avoid filling the classes with getters and setter functions, thus having a cleaner code.
+* We also have the mapstruct dependency to map the objects from DTO to entity and vice versa, with this we also obtain cleaner code.
+* We have also used an exception resolver (HandlerException) is a component that handles exceptions thrown by handlers. This component provides a way to customize exception handling.
 
 ## Project Configuration
 

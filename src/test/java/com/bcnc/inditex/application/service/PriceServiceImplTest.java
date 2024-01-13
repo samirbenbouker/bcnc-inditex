@@ -14,9 +14,7 @@ import org.mockito.MockitoAnnotations;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -58,18 +56,13 @@ public class PriceServiceImplTest {
         PricesRequestDTO requestDTO = getPricesRequestDTO(LocalDateTime.of(2020, 6, 14, 10, 0, 0), Optional.empty(), Optional.empty());
 
         // Mock data
-        List<Prices> mockPrices = createMockPricesList();
         Prices expectedResult = createPrices(1L, LocalDateTime.of(2020, 6, 14, 00, 0), LocalDateTime.of(2020, 12, 31, 23, 59, 59), 1L, 35455L, 1L, 35.50, "EUR");
 
         Long brandId = requestDTO.getBrandId().orElse(1L);
         Long productId = requestDTO.getProductId().orElse(35455L);
 
-        when(pricesRepository.findByStartDateBrandIdProductId(requestDTO.getRequestDate(), brandId, productId))
-                .thenReturn(mockPrices.stream()
-                        .filter(price -> Objects.equals(price.getProductId(), productId)
-                                && Objects.equals(price.getBrandId(), brandId)
-                                && requestDateBetweenStartDateEndDate(requestDTO.getRequestDate(), price.getStartDate(), price.getEndDate()))
-                        .collect(Collectors.toList()));
+        when(pricesRepository.findByRequestDateBrandIdProductId(requestDTO.getRequestDate(), brandId, productId))
+                .thenReturn(expectedResult);
 
         // Call the method
         PricesDTO result = pricesService.getPricesByStartDateProductIdBrandId(requestDTO);
@@ -86,18 +79,13 @@ public class PriceServiceImplTest {
         PricesRequestDTO requestDTO = getPricesRequestDTO(LocalDateTime.of(2020, 6, 14, 16, 0, 0), Optional.empty(), Optional.empty());
 
         // Mock data
-        List<Prices> mockPrices = createMockPricesList();
         Prices expectedResult = createPrices(2L, LocalDateTime.of(2020, 6, 14, 15, 0), LocalDateTime.of(2020, 6, 14, 18, 30), 2L, 35455L, 1L, 25.45, "EUR");
 
         Long brandId = requestDTO.getBrandId().orElse(1L);
         Long productId = requestDTO.getProductId().orElse(35455L);
 
-        when(pricesRepository.findByStartDateBrandIdProductId(requestDTO.getRequestDate(), brandId, productId))
-                .thenReturn(mockPrices.stream()
-                        .filter(price -> Objects.equals(price.getProductId(), productId)
-                                && Objects.equals(price.getBrandId(), brandId)
-                                && requestDateBetweenStartDateEndDate(requestDTO.getRequestDate(), price.getStartDate(), price.getEndDate()))
-                        .collect(Collectors.toList()));
+        when(pricesRepository.findByRequestDateBrandIdProductId(requestDTO.getRequestDate(), brandId, productId))
+                .thenReturn(expectedResult);
 
         // Call the method
         PricesDTO result = pricesService.getPricesByStartDateProductIdBrandId(requestDTO);
@@ -114,18 +102,13 @@ public class PriceServiceImplTest {
         PricesRequestDTO requestDTO = getPricesRequestDTO(LocalDateTime.of(2020, 6, 14, 21, 0, 0), Optional.empty(), Optional.empty());
 
         // Mock data
-        List<Prices> mockPrices = createMockPricesList();
         Prices expectedResult = createPrices(1L, LocalDateTime.of(2020, 6, 14, 0, 0), LocalDateTime.of(2020, 12, 31, 23, 59, 59), 1L, 35455L, 0L, 35.50, "EUR");
 
         Long brandId = requestDTO.getBrandId().orElse(1L);
         Long productId = requestDTO.getProductId().orElse(35455L);
 
-        when(pricesRepository.findByStartDateBrandIdProductId(requestDTO.getRequestDate(), brandId, productId))
-                .thenReturn(mockPrices.stream()
-                        .filter(price -> Objects.equals(price.getProductId(), productId)
-                                && Objects.equals(price.getBrandId(), brandId)
-                                && requestDateBetweenStartDateEndDate(requestDTO.getRequestDate(), price.getStartDate(), price.getEndDate()))
-                        .collect(Collectors.toList()));
+        when(pricesRepository.findByRequestDateBrandIdProductId(requestDTO.getRequestDate(), brandId, productId))
+                .thenReturn(expectedResult);
 
         // Call the method
         PricesDTO result = pricesService.getPricesByStartDateProductIdBrandId(requestDTO);
@@ -142,18 +125,13 @@ public class PriceServiceImplTest {
         PricesRequestDTO requestDTO = getPricesRequestDTO(LocalDateTime.of(2020, 6, 15, 10, 0, 0), Optional.empty(), Optional.empty());
 
         // Mock data
-        List<Prices> mockPrices = createMockPricesList();
         Prices expectedResult = createPrices(3L, LocalDateTime.of(2020, 6, 15, 0, 0), LocalDateTime.of(2020, 6, 15, 11, 0), 3L, 35455L, 1L, 30.50, "EUR");
 
         Long brandId = requestDTO.getBrandId().orElse(1L);
         Long productId = requestDTO.getProductId().orElse(35455L);
 
-        when(pricesRepository.findByStartDateBrandIdProductId(requestDTO.getRequestDate(), brandId, productId))
-                .thenReturn(mockPrices.stream()
-                        .filter(price -> Objects.equals(price.getProductId(), productId)
-                                && Objects.equals(price.getBrandId(), brandId)
-                                && requestDateBetweenStartDateEndDate(requestDTO.getRequestDate(), price.getStartDate(), price.getEndDate()))
-                        .collect(Collectors.toList()));
+        when(pricesRepository.findByRequestDateBrandIdProductId(requestDTO.getRequestDate(), brandId, productId))
+                .thenReturn(expectedResult);
 
         // Call the method
         PricesDTO result = pricesService.getPricesByStartDateProductIdBrandId(requestDTO);
@@ -170,18 +148,13 @@ public class PriceServiceImplTest {
         PricesRequestDTO requestDTO = getPricesRequestDTO(LocalDateTime.of(2020, 6, 16, 21, 0, 0), Optional.empty(), Optional.empty());
 
         // Mock data
-        List<Prices> mockPrices = createMockPricesList();
         Prices expectedResult = createPrices(4L, LocalDateTime.of(2020, 6, 15, 16, 0), LocalDateTime.of(2020, 12, 31, 23, 59, 59), 4L, 35455L, 1L, 38.95, "EUR");
 
         Long brandId = requestDTO.getBrandId().orElse(1L);
         Long productId = requestDTO.getProductId().orElse(35455L);
 
-        when(pricesRepository.findByStartDateBrandIdProductId(requestDTO.getRequestDate(), brandId, productId))
-                .thenReturn(mockPrices.stream()
-                        .filter(price -> Objects.equals(price.getProductId(), productId)
-                                && Objects.equals(price.getBrandId(), brandId)
-                                && requestDateBetweenStartDateEndDate(requestDTO.getRequestDate(), price.getStartDate(), price.getEndDate()))
-                        .collect(Collectors.toList()));
+        when(pricesRepository.findByRequestDateBrandIdProductId(requestDTO.getRequestDate(), brandId, productId))
+                .thenReturn(expectedResult);
 
         // Call the method
         PricesDTO result = pricesService.getPricesByStartDateProductIdBrandId(requestDTO);
@@ -221,7 +194,4 @@ public class PriceServiceImplTest {
         );
     }
 
-    private boolean requestDateBetweenStartDateEndDate(LocalDateTime requestDate, LocalDateTime startDate, LocalDateTime endDate) {
-        return requestDate.isAfter(startDate) && requestDate.isBefore(endDate);
-    }
 }

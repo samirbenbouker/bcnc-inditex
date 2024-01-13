@@ -1,7 +1,9 @@
 package com.bcnc.inditex.application.service;
 
+import com.bcnc.inditex.application.DTO.BrandDTO;
 import com.bcnc.inditex.application.exception.BrandException;
 import com.bcnc.inditex.application.service.impl.BrandServiceImpl;
+import com.bcnc.inditex.domain.Brand;
 import com.bcnc.inditex.infrastructure.repository.BrandRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,13 +33,27 @@ public class BrandServiceImplTest {
     }
 
     @Test
-    public void checkIfExistBrandExceptionTest() {
+    public void getByIdTest() {
+        // mock data
+        Brand expectedBrand = new Brand(1L, "Zara");
+        when(brandRepository.findById(1L)).thenReturn(Optional.of(expectedBrand));
+
+        // Call the method
+        BrandDTO result = brandService.findById(1L);
+
+        // verify the result
+        assertEquals(expectedBrand.getBrandId(), result.getBrandId());
+        assertEquals(expectedBrand.getName(), result.getName());
+    }
+
+    @Test
+    public void getByIdBrandExceptionTest() {
         // Mock data for return empty value
         when(brandRepository.findById(eq(1L))).thenReturn(Optional.empty());
 
         // Call the method
         // use assertThrows for check if BrandException its executed
-        BrandException exception = assertThrows(BrandException.class, () -> brandService.checkIfExist(1L));
+        BrandException exception = assertThrows(BrandException.class, () -> brandService.findById(1L));
 
         // Verify the result
         assertEquals("La marca con el id: 1 no existe", exception.getMessage());

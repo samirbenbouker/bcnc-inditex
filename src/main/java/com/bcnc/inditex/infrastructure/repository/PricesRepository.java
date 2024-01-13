@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public interface PricesRepository extends JpaRepository<Prices, Long> {
 
@@ -14,8 +13,10 @@ public interface PricesRepository extends JpaRepository<Prices, Long> {
             "FROM Prices pr " +
             "WHERE pr.brandId = :brandId " +
             "   AND pr.productId = :productId " +
-            "   AND :requestDate BETWEEN pr.startDate AND pr.endDate")
-    List<Prices> findByStartDateBrandIdProductId(
+            "   AND :requestDate BETWEEN pr.startDate AND pr.endDate " +
+            "ORDER BY pr.priority DESC, pr.price DESC " +
+            "LIMIT 1")
+    Prices findByRequestDateBrandIdProductId(
             @Param("requestDate") LocalDateTime requestDate,
             @Param("brandId") Long brandId,
             @Param("productId") Long productId
